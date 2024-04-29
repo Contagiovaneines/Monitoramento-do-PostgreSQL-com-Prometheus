@@ -252,9 +252,7 @@ Este guia abrange a configuração do Postgres Exporter para coletar métricas d
    Adicione uma configuração de raspagem no arquivo `prometheus.yml`:
 
    ```yaml
-   scrape_configs
-
-:
+   scrape_configs:
      - job_name: postgres
        static_configs:
          - targets: ['endereco_IP_maquina_exportador_postgres:9187']
