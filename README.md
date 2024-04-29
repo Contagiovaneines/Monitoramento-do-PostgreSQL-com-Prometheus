@@ -1,3 +1,80 @@
+---
+
+# Configuração de Ambiente com Vagrant
+
+Este repositório contém configurações para criar e gerenciar uma máquina virtual (VM) usando o Vagrant.
+
+## Pré-requisitos
+
+Antes de começar, certifique-se de ter o seguinte instalado em seu sistema:
+
+- Ubuntu (ou qualquer sistema operacional baseado em Linux)
+- VirtualBox (ou outro provedor de virtualização suportado pelo Vagrant)
+- Vagrant
+
+## Instalação do Vagrant
+
+### Passo 1: Instale o VirtualBox
+
+```bash
+sudo apt update
+sudo apt install virtualbox
+```
+
+### Passo 2: Instale o Vagrant
+
+```bash
+sudo apt update
+sudo apt install vagrant
+```
+
+Verifique se o Vagrant foi instalado corretamente digitando:
+
+```bash
+vagrant --version
+```
+
+## Uso do Vagrantfile
+
+O `Vagrantfile` é usado para configurar o ambiente virtual. Você pode personalizar detalhes como a imagem base, configurações de rede e recursos da máquina.
+
+Aqui está um exemplo simples de um `Vagrantfile`:
+
+```ruby
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+  
+  config.vm.network "private_network", ip: "192.168.33.10"
+  
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "1024"
+  end
+end
+```
+
+Neste exemplo:
+
+- `config.vm.box`: Especifica a imagem base do sistema operacional (Ubuntu 20.04).
+- `config.vm.network`: Define uma rede privada com um endereço IP estático.
+- `config.vm.provider`: Configurações específicas do provedor de virtualização (VirtualBox).
+
+## Iniciando a Máquina Virtual
+
+Para criar e configurar a máquina virtual de acordo com o `Vagrantfile`, execute:
+
+```bash
+vagrant up
+```
+
+Isso irá iniciar a máquina virtual. Para se conectar via SSH, use:
+
+```bash
+vagrant ssh
+```
+
+---
+
+
 # Configuração do Prometheus para Monitoramento do PostgreSQL
 
 Este guia detalha os passos necessários para configurar o Prometheus para monitorar uma instância do PostgreSQL em sua máquina. Antes de começar, verifique se atende aos seguintes requisitos:
